@@ -31,7 +31,7 @@ class SudokuTable{
         void printTable();
         void generateWhole();
     private:
-       Cell tableGrid[3][3]; 
+       int tableGrid[3][3][3][3]; 
 };
 
 

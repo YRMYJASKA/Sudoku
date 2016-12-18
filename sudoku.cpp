@@ -83,42 +83,37 @@ SudokuTable::SudokuTable(){
 void SudokuTable::printTable(){
     for(int i = 0; i < 3; i++){
         cout << "-----------------------------" << endl;
-        for(int x = 0; x < 3; x++){
-            
-            cout << " | ";
-            this->tableGrid[i][x].printRow(1);
-            cout << " | ";
-            this->tableGrid[i][x].printRow(2);
-            cout << " | ";
-            this->tableGrid[i][x].printRow(3);
-            cout << " | ";
-            cout << endl;
-        }    
+        for(int x = 0; x < 3; x++){	
+			cout << " | ";
+           	cout << this->tableGrid[i][x][0][0];
+           	cout << " " << this->tableGrid[i][x][0][1] << " ";
+           	cout << this->tableGrid[i][x][0][2];
+			cout << " | ";
+           	cout << this->tableGrid[i][x][1][0];
+           	cout << " " << this->tableGrid[i][x][1][1] << " ";
+           	cout << this->tableGrid[i][x][1][2];
+			cout << " | ";
+           	cout << this->tableGrid[i][x][2][0];
+           	cout << " " << this->tableGrid[i][x][2][1] << " ";
+           	cout << this->tableGrid[i][x][2][2];
+			cout << " | " << endl;
+		}    
     }
     cout << "-----------------------------" << endl;
   
 }
 
 void SudokuTable::generateWhole(){
-    for(int p = 0; p < 3; p++){
+    //Format the table before generating
+	for(int p = 0; p < 3; p++){
         for(int o = 0; o < 3; o++){
-            this->tableGrid[p][o].SetZero();
-        }    
-    }
-/*    int h, column, q = 0;
-    for(int i = 0; i < 3; i++){
-        h = floor(i/3);
-        cout << i << endl;
-        for(int g = 0; g < 9; g++){
-            for(int y = 0; y < 10; y++){
-                column = rand() % 9;
-                q = floor(column/3);
-                cout << column << endl;
-                if((this->tableGrid[h][q].grid[h][column] == 0 ) && (this->tableGrid[i][q].checkList(g))){
-                    this->tableGrid[h][q].grid[h][column] = g+1;
-                }
-            }
-        }
-    }
-*/
+        	for(int g = 0; g < 3; g++){
+				for(int c = 0; c < 3; c++)
+						this->tableGrid[p][o][g][c] = 0;
+			}
+		}
+	}
+
+	//Generate the table
+
 }
