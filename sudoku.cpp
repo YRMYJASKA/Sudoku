@@ -105,7 +105,7 @@ void SudokuTable::generateWhole(){
             this->tableGrid[p][o].SetZero();
         }    
     }
-    int h, column, q = 0;
+/*    int h, column, q = 0;
     for(int i = 0; i < 3; i++){
         h = floor(i/3);
         cout << i << endl;
@@ -120,5 +120,5 @@ void SudokuTable::generateWhole(){
             }
         }
     }
-
+*/
 }
