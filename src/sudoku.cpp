@@ -1,6 +1,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include<math.h>
+#include<vector>
 #include "sudoku.h"
 
 using namespace std;
@@ -53,7 +54,8 @@ void Cell::generate(){
             Row = rand() % 3;
             Column = rand() % 3;
             cout << "R: " << Row <<" C: " << Column << " Z: " << z << endl;
-            if(this->grid[Row][Column] == 0){
+            //TODO: Add functionality to this new structure
+			if(this->grid[Row][Column] == 0){
                 this->grid[Row][Column] = z;
                 break;
             }
@@ -81,7 +83,7 @@ SudokuTable::SudokuTable(){
        
 } 
 void SudokuTable::printTable(){
-    for(int i = 0; i < 3; i++){
+    /*for(int i = 0; i < 3; i++){
         cout << "-----------------------------" << endl;
         for(int x = 0; x < 3; x++){	
 			cout << " | ";
@@ -100,20 +102,66 @@ void SudokuTable::printTable(){
 		}    
     }
     cout << "-----------------------------" << endl;
-  
+  */
+	for(int i = 0; i < 3; i++){
+		for(int x = 0; x < 3; x++)
+				this->tableGrid[i][x].printGrid();
+	}
+
 }
+//Returns true if a row contains a number
+bool SudokuTable::checkRow(int rowNum, int num){
+	int rowCell;
+	int parsableNum = rowNum % 3;
+	if(rowNum < 3)
+			rowCell = 0;
+	else if(rowNum < 6)
+			rowCell = 1;
+	else if(rowNum < 9)
+			rowCell = 2;
+	else{
+		cout << "ERROR! Incorrect number for ChechRow()!" << endl;
+	exit(1);
+	}
+	for(int q = 0; q < 3; q++){
+		for(int h = 0; h < 3; h++){
+			if(this->tableGrid[rowCell][q].grid[parsableNum][h] == num){
+					return true;
+			}
+	
+		}
+	}
+	return false;
+}
+bool SudokuTable::checkColumn(int columnNum, int num){
+	int columnCell, parsableNum;
+	parsableNum = columnNum % 3;
+	if(columnNum < 3)
+			columnCell = 0;
+	else if(columnNum < 6)
+			columnCell = 1;
+	else if(columnNum < 9)
+			columnCell = 2;
+	else{
+		cout << "ERROR! Incorrect number for ChechRow()!" << endl;
+	exit(1);
+	}
+	for(int q = 0; q<3; q++){ 
+		for(int h = 0; h < 3; h++){
+			if(this->tableGrid[q][columnCell].grid[h][parsableNum] == num)
+		return true;
+		}
+	}	
+	return false;
+}
+
 
 void SudokuTable::generateWhole(){
     //Format the table before generating
-	for(int p = 0; p < 3; p++){
-        for(int o = 0; o < 3; o++){
-        	for(int g = 0; g < 3; g++){
-				for(int c = 0; c < 3; c++)
-						this->tableGrid[p][o][g][c] = 0;
-			}
-		}
+	
+	//Generate the table	
+	for(int i = 0; i < 3; i++){
+		for(int x = 0; x < 3; x++)
+				this->tableGrid[i][x].generate();
 	}
-
-	//Generate the table
-
 }

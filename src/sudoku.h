@@ -31,7 +31,9 @@ class SudokuTable{
         void printTable();
         void generateWhole();
     private:
-       int tableGrid[3][3][3][3]; 
+		bool checkColumn(int columnNum, int num);
+		bool checkRow(int rowNum, int num);
+      	Cell tableGrid[3][3]; 
 };
 
 
